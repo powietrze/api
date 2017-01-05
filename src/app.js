@@ -1,10 +1,4 @@
-import assert from 'assert';
+import {server} from './server';
 
 
-async function test() {
-  console.log('Hello!');
-}
-
-test();
-
-assert(true);
+server.listen(8081);
