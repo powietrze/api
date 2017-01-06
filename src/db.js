@@ -32,6 +32,12 @@ export const getSensors = async(connection, dbName, stationId) => {
   return cursor.toArray();
 };
 
+export const getSensor = (connection, dbName, id) => rethink
+  .db(dbName)
+  .table('sensors')
+  .get(id)
+  .run(connection);
+
 export const getReadings = async(connection, dbName, sensorId) => {
   const cursor = await rethink
     .db(dbName)

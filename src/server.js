@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import koaRouter from 'koa-router';
 
-import {getCities, getCity, getStations, getStation, getSensors, getReadings} from './db';
+import {getCities, getCity, getStations, getStation, getSensors, getSensor, getReadings} from './db';
 
 
 export function createServer(connection, dbName) {
@@ -22,9 +22,13 @@ export function createServer(connection, dbName) {
       const station = await getStation(connection, dbName, ctx.params.id);
       station ? ctx.body = JSON.stringify({station}) : ctx.status = 404;
     })
-    .get('/rest/sensors/:stationId/', async(ctx) => {
-      const sensors = await getSensors(connection, dbName, ctx.params.stationId);
+    .get('/rest/stations/:id/sensors/', async(ctx) => {
+      const sensors = await getSensors(connection, dbName, ctx.params.id);
       ctx.body = JSON.stringify({sensors});
+    })
+    .get('/rest/sensors/:id/', async(ctx) => {
+      const sensor = await getSensor(connection, dbName, ctx.params.id);
+      sensor ? ctx.body = JSON.stringify({sensor}) : ctx.status = 404;
     })
     .get('/rest/sensors/:id/readings/', async(ctx) => {
       const readings = await getReadings(connection, dbName, ctx.params.id);
