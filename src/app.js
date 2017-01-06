@@ -1,12 +1,15 @@
+import {parseEnvironmentVariables} from './envs';
 import {createConnection, disconnect} from './db';
 import {createServer} from './server';
 
 
-async function main() {
-  const connection = await createConnection('0.0.0.0', '28015');
-  const server = createServer(connection, 'powietrze_test');
+const params = parseEnvironmentVariables();
 
-  server.listen(8081);
+async function main() {
+  const connection = await createConnection(params.dbHost, params.dbPort);
+  const server = createServer(connection, params.dbName);
+
+  server.listen(params.apiPort);
 
   await setupExitCallback(connection);
 }
