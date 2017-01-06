@@ -1,6 +1,6 @@
 {
   "name": "powietrze-api",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "repository": "git@github.com:powietrze/api.git",
   "author": "Tomasz Netczuk <contact@netczuk.pl>",
   "license": "MIT",
