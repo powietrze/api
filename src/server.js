@@ -12,7 +12,7 @@ export function createServer(connection, dbName) {
     })
     .get('/rest/cities/:id/', async(ctx) => {
       const city = await getCity(connection, dbName, ctx.params.id);
-      city ? ctx.body = JSON.stringify({city}) : ctx.status = 404;
+      city ? ctx.body = JSON.stringify(city) : ctx.status = 404;
     })
     .get('/rest/stations/', async(ctx) => {
       const stations = await getStations(connection, dbName);
@@ -20,7 +20,7 @@ export function createServer(connection, dbName) {
     })
     .get('/rest/stations/:id/', async(ctx) => {
       const station = await getStation(connection, dbName, ctx.params.id);
-      station ? ctx.body = JSON.stringify({station}) : ctx.status = 404;
+      station ? ctx.body = JSON.stringify(station) : ctx.status = 404;
     })
     .get('/rest/stations/:id/sensors/', async(ctx) => {
       const sensors = await getSensors(connection, dbName, ctx.params.id);
@@ -28,7 +28,7 @@ export function createServer(connection, dbName) {
     })
     .get('/rest/sensors/:id/', async(ctx) => {
       const sensor = await getSensor(connection, dbName, ctx.params.id);
-      sensor ? ctx.body = JSON.stringify({sensor}) : ctx.status = 404;
+      sensor ? ctx.body = JSON.stringify(sensor) : ctx.status = 404;
     })
     .get('/rest/sensors/:id/readings/', async(ctx) => {
       const readings = await getReadings(connection, dbName, ctx.params.id);
