@@ -1,4 +1,5 @@
 import Koa from 'koa';
+import cors from 'kcors';
 import koaRouter from 'koa-router';
 
 import {getCities, getCity, getStations, getStation, getSensors, getSensor, getReadings} from './db';
@@ -36,6 +37,7 @@ export function createServer(connection, dbName) {
     });
 
   const app = new Koa();
+  app.use(cors());
   app.use(router.routes());
 
   return app;
